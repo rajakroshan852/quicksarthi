@@ -1,10 +1,19 @@
-
 "use client";
 
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from "@/components/ui/card";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 type LogType = "info" | "warning" | "error";
@@ -59,7 +68,10 @@ export default function SystemLogsPage() {
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-bold">System Logs</h1>
 
-      <Tabs defaultValue="all" onValueChange={(val) => setFilter(val as any)}>
+      <Tabs
+        defaultValue="all"
+        onValueChange={(val: string) => setFilter(val as "all" | LogType)}
+      >
         <TabsList className="gap-2">
           <TabsTrigger value="all">All</TabsTrigger>
           <TabsTrigger value="info">Info</TabsTrigger>

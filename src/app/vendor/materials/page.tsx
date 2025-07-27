@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from "react";
@@ -23,50 +22,64 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Pencil, PlusCircle, Trash2 } from "lucide-react";
 
+// ✅ Type definitions
+type Material = {
+  id: number;
+  name: string;
+  price: number;
+  quantity: string;
+  stock: number;
+};
+
+type FormState = {
+  name: string;
+  price: string;
+  quantity: string;
+  stock: string;
+};
+
 export default function MaterialPage() {
-  const [materials, setMaterials] = useState([
+  const [materials, setMaterials] = useState<Material[]>([
     { id: 1, name: "Cement", price: 500, quantity: "50kg", stock: 100 },
     { id: 2, name: "Bricks", price: 5, quantity: "1 piece", stock: 1000 },
     { id: 3, name: "Steel Rod", price: 300, quantity: "1 unit", stock: 200 },
   ]);
 
-  const [form, setForm] = useState({ name: "", price: "", quantity: "", stock: "" });
+  const [form, setForm] = useState<FormState>({ name: "", price: "", quantity: "", stock: "" });
   const [editId, setEditId] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
 
   const handleSave = () => {
     if (!form.name || !form.price || !form.quantity || !form.stock) return;
 
+    const newData: Material = {
+      id: editId !== null ? editId : materials.length + 1,
+      name: form.name,
+      price: parseFloat(form.price),
+      quantity: form.quantity,
+      stock: parseInt(form.stock, 10),
+    };
+
     if (editId !== null) {
-      // Update existing
       setMaterials((prev) =>
-        prev.map((m) =>
-          m.id === editId ? { ...m, ...form, price: +form.price, stock: +form.stock } : m
-        )
+        prev.map((m) => (m.id === editId ? newData : m))
       );
     } else {
-      // Add new
-      const newMaterial = {
-        id: materials.length + 1,
-        name: form.name,
-        price: +form.price,
-        quantity: form.quantity,
-        stock: +form.stock,
-      };
-      setMaterials([...materials, newMaterial]);
+      setMaterials([...materials, newData]);
     }
 
+    // Reset form
     setForm({ name: "", price: "", quantity: "", stock: "" });
     setEditId(null);
     setOpen(false);
   };
 
-  const handleEdit = (material: any) => {
+  const handleEdit = (material: Material) => {
     setForm({
       name: material.name,
-      price: String(material.price),
+      price: material.price.toString(),
       quantity: material.quantity,
-      stock: String(material.stock),
+      stock: material.stock.toString(),
     });
     setEditId(material.id);
     setOpen(true);
