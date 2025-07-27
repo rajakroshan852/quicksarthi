@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import {
@@ -22,7 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Pencil, PlusCircle, Trash2 } from "lucide-react";
 
-// ✅ Type definitions
+// ✅ Types
 type Material = {
   id: number;
   name: string;
@@ -45,14 +45,20 @@ export default function MaterialPage() {
     { id: 3, name: "Steel Rod", price: 300, quantity: "1 unit", stock: 200 },
   ]);
 
-  const [form, setForm] = useState<FormState>({ name: "", price: "", quantity: "", stock: "" });
+  const [form, setForm] = useState<FormState>({
+    name: "",
+    price: "",
+    quantity: "",
+    stock: "",
+  });
+
   const [editId, setEditId] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
 
   const handleSave = () => {
     if (!form.name || !form.price || !form.quantity || !form.stock) return;
 
-    const newData: Material = {
+    const newMaterial: Material = {
       id: editId !== null ? editId : materials.length + 1,
       name: form.name,
       price: parseFloat(form.price),
@@ -62,13 +68,12 @@ export default function MaterialPage() {
 
     if (editId !== null) {
       setMaterials((prev) =>
-        prev.map((m) => (m.id === editId ? newData : m))
+        prev.map((m) => (m.id === editId ? newMaterial : m))
       );
     } else {
-      setMaterials([...materials, newData]);
+      setMaterials((prev) => [...prev, newMaterial]);
     }
 
-    // Reset form
     setForm({ name: "", price: "", quantity: "", stock: "" });
     setEditId(null);
     setOpen(false);
@@ -86,7 +91,7 @@ export default function MaterialPage() {
   };
 
   const handleDelete = (id: number) => {
-    setMaterials(materials.filter((m) => m.id !== id));
+    setMaterials((prev) => prev.filter((m) => m.id !== id));
   };
 
   return (
@@ -117,30 +122,37 @@ export default function MaterialPage() {
 
             <div className="grid gap-4 py-2">
               <div className="grid gap-2">
-                <Label>Name</Label>
+                <Label htmlFor="name">Name</Label>
                 <Input
+                  id="name"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                 />
               </div>
+
               <div className="grid gap-2">
-                <Label>Price (₹)</Label>
+                <Label htmlFor="price">Price (₹)</Label>
                 <Input
+                  id="price"
                   type="number"
                   value={form.price}
                   onChange={(e) => setForm({ ...form, price: e.target.value })}
                 />
               </div>
+
               <div className="grid gap-2">
-                <Label>Quantity (e.g. 1kg)</Label>
+                <Label htmlFor="quantity">Quantity (e.g. 1kg)</Label>
                 <Input
+                  id="quantity"
                   value={form.quantity}
                   onChange={(e) => setForm({ ...form, quantity: e.target.value })}
                 />
               </div>
+
               <div className="grid gap-2">
-                <Label>Stock</Label>
+                <Label htmlFor="stock">Stock</Label>
                 <Input
+                  id="stock"
                   type="number"
                   value={form.stock}
                   onChange={(e) => setForm({ ...form, stock: e.target.value })}
@@ -177,10 +189,18 @@ export default function MaterialPage() {
                 <TableCell>{mat.quantity}</TableCell>
                 <TableCell>{mat.stock}</TableCell>
                 <TableCell className="text-right space-x-2">
-                  <Button variant="ghost" size="icon" onClick={() => handleEdit(mat)}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleEdit(mat)}
+                  >
                     <Pencil className="w-4 h-4" />
                   </Button>
-                  <Button variant="destructive" size="icon" onClick={() => handleDelete(mat.id)}>
+                  <Button
+                    variant="destructive"
+                    size="icon"
+                    onClick={() => handleDelete(mat.id)}
+                  >
                     <Trash2 className="w-4 h-4" />
                   </Button>
                 </TableCell>

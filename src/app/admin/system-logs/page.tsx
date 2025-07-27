@@ -70,7 +70,9 @@ export default function SystemLogsPage() {
 
       <Tabs
         defaultValue="all"
-        onValueChange={(val: string) => setFilter(val as "all" | LogType)}
+        onValueChange={(val: string) =>
+          setFilter(val as "all" | LogType)
+        }
       >
         <TabsList className="gap-2">
           <TabsTrigger value="all">All</TabsTrigger>

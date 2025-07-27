@@ -3,14 +3,15 @@ import { Rocket, Users, Truck, ShoppingCart } from "lucide-react";
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground" >
+    <main className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
       <section className="px-6 py-16 text-center md:px-20 bg-gradient-to-r from-slate-900 to-gray-950">
         <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
           Welcome to <span className="text-green-400">QuickSarthi</span>
         </h1>
         <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-6">
-          A powerful platform connecting vendors, shopkeepers, delivery agents, and admins to streamline raw material sourcing.
+          A powerful platform connecting vendors, shopkeepers, delivery agents,
+          and admins to streamline raw material sourcing.
         </p>
         <Button className="text-lg px-6 py-4">Get Started</Button>
       </section>
@@ -19,8 +20,10 @@ export default function LandingPage() {
       <section className="px-6 md:px-20 py-16 bg-background">
         <h2 className="text-3xl font-bold text-center mb-4">About QuickSarthi</h2>
         <p className="text-muted-foreground text-center max-w-3xl mx-auto">
-          QuickSarthi is an all-in-one procurement and delivery system that empowers local businesses to manage raw material logistics efficiently.
-          With role-specific dashboards, real-time tracking, and order management — it's the future of sourcing.
+          QuickSarthi is an all-in-one procurement and delivery system that empowers
+          local businesses to manage raw material logistics efficiently. With
+          role-specific dashboards, real-time tracking, and order management &mdash;
+          it&apos;s the future of sourcing.
         </p>
       </section>
 
@@ -35,7 +38,8 @@ export default function LandingPage() {
               <h3 className="text-xl font-semibold">Vendors</h3>
             </div>
             <p className="text-muted-foreground">
-              List raw materials, update stock, and manage orders efficiently. Track demand and stay connected to buyers in real-time.
+              List raw materials, update stock, and manage orders efficiently.
+              Track demand and stay connected to buyers in real-time.
             </p>
           </div>
 
@@ -46,7 +50,8 @@ export default function LandingPage() {
               <h3 className="text-xl font-semibold">Shopkeepers</h3>
             </div>
             <p className="text-muted-foreground">
-              Browse, compare, and order materials. Track delivery and manage your purchases in one place.
+              Browse, compare, and order materials. Track delivery and manage
+              your purchases in one place.
             </p>
           </div>
 
@@ -57,7 +62,8 @@ export default function LandingPage() {
               <h3 className="text-xl font-semibold">Delivery Agents</h3>
             </div>
             <p className="text-muted-foreground">
-              Accept delivery requests, update order status, and complete trips with ease. Stay on top of logistics.
+              Accept delivery requests, update order status, and complete trips
+              with ease. Stay on top of logistics.
             </p>
           </div>
 
@@ -68,7 +74,8 @@ export default function LandingPage() {
               <h3 className="text-xl font-semibold">Admins</h3>
             </div>
             <p className="text-muted-foreground">
-              Monitor system activity, resolve disputes, and manage platform roles. Keep everything running smoothly.
+              Monitor system activity, resolve disputes, and manage platform roles.
+              Keep everything running smoothly.
             </p>
           </div>
         </div>
